@@ -9,7 +9,7 @@ def y(x):
 def findError(prev,new):
     numerator=abs(abs(new)-abs(prev))
     denominator=new
-    return (numerator/denominator)*100
+    return abs((numerator/denominator)*100)
 
 def getMid(a,b):
     return (a+b)/2
@@ -18,37 +18,58 @@ def generateInputs(lowerBound,upperBound,step):
     return(np.arange(lowerBound,upperBound,step))
 
 def plotGraph(xValues):
-    
     yValues=[]
-
     for i in xValues:
         tempY=y(i)
         yValues.append(tempY)
-
     plt.plot(xValues,yValues,marker="o")
     plt.show()
 
-def doBisectionMethod(lowerBound,upperBound,error=0.5,maxIteration=20):
+def doBisectionMethod(lowerBound,upperBound,error=0.05,maxIteration=20):
     fLower=y(lowerBound)
     fUpper=y(upperBound)
-    for i in range(maxIteration):
-        mid=(upperBound+lowerBound)/2
-        oldMid=0
-        if (y(mid)*y(upperBound)<0):
-            oldMid=lowerBound
-            lowerBound=mid 
-            
-        elif(y(mid)*y(lowerBound)<0): 
-            oldMid=upperBound
-            upperBound=mid
-            
+    
+    estimate=upperBound
+    oldEstimate=upperBound
+    
+    if(fLower*fUpper<0):
+        print("Correct range chosen")
         
-        currentError=findError(oldMid,mid)
-        print("lower ",lowerBound," upper ",upperBound,"mid ",mid)
+    #Returning if range is false
+    else:
+        print("Wrong range chosen")
+        return
+    
+    for i in range(maxIteration):
+        if (y(estimate)*y(lowerBound)>0):
+            oldEstimate=estimate
+            lowerBound=estimate 
+            
+        elif(y(estimate)*y(lowerBound)<0): 
+            oldEstimate=estimate
+            upperBound=estimate
+        
+        elif(y(estimate)==y(lowerBound)):
+            return estimate
+        
+        estimate=(upperBound+lowerBound)/2
+        currentError=findError(oldEstimate,estimate)
+        
+        #Debugging print
+        print("lower ",lowerBound," upper ",upperBound,"Estimate ",estimate)
         print("Error  : ",currentError)
         
-    return 9
+        #Returning if error found
+        if(currentError<=error):
+            print("Got lower error than expected in iteration ",i)
+            return
+        
+    
+    #Returning when maxIteration exceeded
+    print("Ended because max iteration count exceeded. Ended with value ",estimate)
+    return 
 
-xValues=generateInputs(-3,3,0.3)
-#plotGraph(xValues)
-doBisectionMethod(-3,3.1)
+
+xValues=generateInputs(-1,0.5,0.3)
+plotGraph(xValues)
+doBisectionMethod(-0.1,0)
