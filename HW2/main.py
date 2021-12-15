@@ -7,9 +7,13 @@ def f(x,y){
 }
 
 equationCount=int(input())
-matrix=np.array(equationCount,equationCount)
+coeffMatrix=np.array(equationCount,equationCount)
+constMatrix=np.array(equationCount,1)
 for i in range(equationCount):
-    for j in matrix[i-1]:
-        matrix[i-1][j-1]=int(input())
+    for j in coeffMatrix[i-1]:
+        coeffMatrix[i-1][j-1]=int(input())
+for i in range(equationCount):
+    constMatrix[i-1][0]=int(input())
 
-print(matrix)
+print(coeffMatrix)
+print(constMatrix)
