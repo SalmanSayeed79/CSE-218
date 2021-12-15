@@ -1,11 +1,24 @@
 import numpy as np
-def f(x,y){
-    sqr1=x**2
-    sqr2=y**2
 
-    return 
-}
+#=========================================
+# Defining the main function to implement Gaussian
+#=========================================
 
+def useGaussian(matrixParam, size):
+    # Things I need to do here:
+    #=========================================
+    # Traverse through the matrix row by row
+    # Define a pivot 
+    # [Forward Elimination] Use the pivot to create a upper valued matrix
+    # [Back Substitution] Then equalize each row with the correspoding const to from equations
+    # Solve the equations derived by back substitution
+    for i in range(size):
+
+
+
+#=========================================
+# Taking the input to create matrices 
+#=========================================
 equationCount=int(input())
 coeffMatrix=np.array(equationCount,equationCount)
 constMatrix=np.array(equationCount,1)
