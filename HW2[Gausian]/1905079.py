@@ -18,48 +18,29 @@ import numpy as np
 def GaussianElimination(A,B,pivot=False,showAll=True):
     # print("Hello")
     # currentPivotRow=0
-    rowNumber=A.shape[0]
+    rowNumber,colNumber=np.shape(A)
     xValues=np.zeros(rowNumber,float)
-    
-    
-    # for i in range(rowNumber):
-    #     shapeInsideRow=A[i].shape[0]
-        
-    #     #pivoting
-    #     maxFirstColValue=A[i][i]
-    #     for j in range(shapeInsideRow):
-    #         #A[i][j]=A[i-1][j]
-    #         if(A[j][i]>maxFirstColValue):
-    #             print(j,"matches with ", i)
-    #             #Switching coeffrow
-    #             A[[j,i]]=A[[i,j]]
-    #             #Switching const row
-    #             temp=B[j]
-    #             B[j]=B[i]
-    #             B[i]=temp
-                
-    #             print(A)
-    #             print(B)
-    #     #Forward Elimination
-    #     for j in range(shapeInsideRow-1):
-    #         #factor=A[i+1,j]/A[i,j]
-    #         print(A[i,j+1],"/",A[i,j]) 
+
 
     for k in range(rowNumber-1):
         if np.fabs(A[k][k]==0 and pivot==True):
-            max = A[k, k]
-            for i in range(k+1,rowNumber):
-
-                if np.fabs(A[i,k]>np.fabs(max)):
-                    max=A[i,k]
-                    max_val=i
-
-
-            A[[k,max_val]]=A[[max_val,k]]
-            B[[k,max_val]]=B[[max_val,k]]
-
-        if np.fabs(A[k][k] == 0 and pivot==False):
-            print('Divide by zero detected! Please set pivoting flag as True.')
+            #pivoting
+            maxFirstColValue=A[i][i]
+            temp=0
+            for j in range(i+1,colNumber):
+                #A[i][j]=A[i-1][j]
+                if(abs(A[j][i])>abs(maxFirstColValue)):
+                    maxFirstColValue=A[j][i]
+                    print(j,">", i)
+                    #Switching coeffrow
+                    A[[j,i]]=A[[i,j]]
+                    #Switching const row
+                    B[[j,i]]=B[[i,j]]
+                    
+                    # print(A)
+                    # print(B)
+        if (abs(A[k][k] == 0) and pivot==False):
+            print('Divide by zero detected! ')
 
         for i in range(k+1,rowNumber):
             if A[i,k]==0:
@@ -90,7 +71,31 @@ def GaussianElimination(A,B,pivot=False,showAll=True):
     return answer
 
 
-
+def GaussianElimination2(A,B,pivot=True,showAll=False):
+    rowNumber,colNumber=np.shape(A)
+    for i in range(rowNumber):
+        #pivoting
+        maxFirstColValue=A[i][i]
+        temp=0
+        for j in range(i+1,colNumber):
+            #A[i][j]=A[i-1][j]
+            if(abs(A[j][i])>abs(maxFirstColValue)):
+                maxFirstColValue=A[j][i]
+                print(j,">", i)
+                #Switching coeffrow
+                A[[j,i]]=A[[i,j]]
+                #Switching const row
+                B[[j,i]]=B[[i,j]]
+                
+                # print(A)
+                # print(B)
+                
+        #Forward Elimination
+        
+        for j in range(i,colNumber-1):
+            factor=A[i,i]/A[i+1,i]
+            print(A[i,i],"/",A[i+1,i])
+            
 
 #=========================================
 # Taking the input to create matrices 
@@ -113,5 +118,6 @@ for i in range(equationCount):
 print(coeffMatrix)
 print(constMatrix)
 
-answer=GaussianElimination(coeffMatrix,constMatrix,True,True)
-print(answer)
+GaussianElimination2(coeffMatrix,constMatrix,True,True)
+# answer=GaussianElimination(coeffMatrix,constMatrix,True,True)
+# print(answer)
