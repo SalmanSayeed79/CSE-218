@@ -38,12 +38,14 @@ second=trapezoidIntregation(1.22*pow(10,-4),0.61*pow(10,-4),2)
 third=trapezoidIntregation(1.22*pow(10,-4),0.61*pow(10,-4),3)
 fourth=trapezoidIntregation(1.22*pow(10,-4),0.61*pow(10,-4),4)
 fifth=trapezoidIntregation(1.22*pow(10,-4),0.61*pow(10,-4),5)
+sixth=trapezoidIntregation(1.22*pow(10,-4),0.61*pow(10,-4),6)
 
 print("Intervals 1 : Time Taken : %20f"% first,"Absolute Relative Approx Error : ---")
 print("Intervals 2 : Time Taken : %20f"% second,"Absolute Relative Approx Error : " ,getRelativeApproximateError(second,first))
 print("Intervals 3 : Time Taken : %20f"% third,"Absolute Relative Approx Error : ", getRelativeApproximateError(third,second))
 print("Intervals 4 : Time Taken : %20f"% fourth,"Absolute Relative Approx Error : ", getRelativeApproximateError(fourth,third))
 print("Intervals 5 : Time Taken : %20f"% fifth,"Absolute Relative Approx Error : ", getRelativeApproximateError(fifth,fourth))
+print("Intervals 6 : Time Taken : %20f"% sixth,"Absolute Relative Approx Error : ", getRelativeApproximateError(sixth,fifth))
 
 
 
@@ -52,6 +54,7 @@ simpsonsecond=simpsonsIntegration(1.22*pow(10,-4),0.61*pow(10,-4),2)
 simpsonthird=simpsonsIntegration(1.22*pow(10,-4),0.61*pow(10,-4),3)
 simpsonfourth=simpsonsIntegration(1.22*pow(10,-4),0.61*pow(10,-4),4)
 simpsonfifth=simpsonsIntegration(1.22*pow(10,-4),0.61*pow(10,-4),5)
+simpsonsixth=simpsonsIntegration(1.22*pow(10,-4),0.61*pow(10,-4),6)
 print("Simpsons Integration : ")
 print("===================================================")
 print("Intervals 1 : Time Taken : %.20f"% simpsonfirst,"Absolute Relative Approx Error : ---")
@@ -59,7 +62,7 @@ print("Intervals 2 : Time Taken : %.20f"% simpsonsecond,"Absolute Relative Appro
 print("Intervals 3 : Time Taken : %.20f"% simpsonthird,"Absolute Relative Approx Error : ", getRelativeApproximateError(simpsonthird,simpsonsecond))
 print("Intervals 4 : Time Taken : %.20f"% simpsonfourth,"Absolute Relative Approx Error : ", getRelativeApproximateError(simpsonfourth,simpsonthird))
 print("Intervals 5 : Time Taken : %.20f"% simpsonfifth,"Absolute Relative Approx Error : ", getRelativeApproximateError(simpsonfifth,simpsonfourth))
-
+print("Intervals 6 : Time Taken : %.20f"% simpsonsixth,"Absolute Relative Approx Error : ", getRelativeApproximateError(simpsonsixth,simpsonfifth))
 
 
 #=============================================
