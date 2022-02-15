@@ -71,30 +71,7 @@ def GaussianElimination(A,B,pivot=False,showAll=True):
     return answer
 
 
-def GaussianElimination2(A,B,pivot=True,showAll=False):
-    rowNumber,colNumber=np.shape(A)
-    for i in range(rowNumber):
-        #pivoting
-        maxFirstColValue=A[i][i]
-        temp=0
-        for j in range(i+1,colNumber):
-            #A[i][j]=A[i-1][j]
-            if(abs(A[j][i])>abs(maxFirstColValue)):
-                maxFirstColValue=A[j][i]
-                print(j,">", i)
-                #Switching coeffrow
-                A[[j,i]]=A[[i,j]]
-                #Switching const row
-                B[[j,i]]=B[[i,j]]
-                
-                # print(A)
-                # print(B)
-                
-        #Forward Elimination
-        
-        for j in range(i,colNumber-1):
-            factor=A[i,i]/A[i+1,i]
-            print(A[i,i],"/",A[i+1,i])
+
             
 
 #=========================================
@@ -118,6 +95,5 @@ for i in range(equationCount):
 print(coeffMatrix)
 print(constMatrix)
 
-GaussianElimination2(coeffMatrix,constMatrix,True,True)
-# answer=GaussianElimination(coeffMatrix,constMatrix,True,True)
-# print(answer)
+answer=GaussianElimination(coeffMatrix,constMatrix,True,True)
+print(answer)
